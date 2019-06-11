@@ -6,7 +6,7 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2LoginView,
 )
 
-from accounts.zalo_provider.provider import ZaloProvider
+from .provider import ZaloProvider
 
 
 class ZaloOAuth2Adapter(OAuth2Adapter):
