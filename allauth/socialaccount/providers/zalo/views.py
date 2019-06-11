@@ -16,8 +16,11 @@ class ZaloOAuth2Adapter(OAuth2Adapter):
     def complete_login(self, request, app, token, **kwargs):
         resp = requests.get(self.access_token_url.format(access_token=token))
         extra_data = resp.json()
-        return self.get_provider().sociallogin_from_response(request,
-                                                             extra_data)
+        if extra_data.get('error', None) is None:
+            return self.get_provider().sociallogin_from_response(request,
+                                                                 extra_data)
+        else:
+            raise Exception(extra_data.get('message'))
 
 
 oauth2_login = OAuth2LoginView.adapter_view(ZaloOAuth2Adapter)
