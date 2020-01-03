@@ -24,7 +24,7 @@ except ImportError:
     from urlparse import parse_qsl, parse_qs, urlparse, urlunparse, urljoin  # noqa
 
 try:
-    from django.utils.encoding import python_2_unicode_compatible
+    from six import python_2_unicode_compatible
 except ImportError:
     def python_2_unicode_compatible(c):
         return c
